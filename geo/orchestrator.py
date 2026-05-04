@@ -55,7 +55,8 @@ def init_db():
 def run_battery(
         queries_path: str = "queries.json",
         competitors_path: str = "competitors.json",
-        runs_per_cell: int = 3,
+        # reducing this reduces cost, but you lose some statistical power 
+        runs_per_cell: int = 2, 
         models: list[ModelName] = None,
 ):
     init_db()
