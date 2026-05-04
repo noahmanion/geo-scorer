@@ -136,7 +136,7 @@ def score_all_competitors(
     """
     return [(c, score_one(response_text, c)) for c in competitors]
 
-def score_one_with_rety(
+def score_one_with_retry(
         response_text: str,
         competitor: str,
         max_attempts: int = 3,
