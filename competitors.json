@@ -1,0 +1,25 @@
+[
+ {
+    "name": "Firecrawl",
+    "aliases": ["firecrawl", "Firecrawl.dev", "fire crawl"]
+},
+ {
+    "name": "Apify",
+    "aliases": ["apify", "Apify.com"]
+},
+{
+    "name": "Browserbase",
+    "aliases": ["browserbase", "Browserbase.com"]
+},
+{
+    "name": "Bright Data",
+    "aliases": ["bright data", "BrightData", "Luminati"]
+},
+{   "name": "Zyte",
+    "aliases": ["zyte", "Zyte.com", "Scrapinghub"]
+},
+{
+    "name": "ScrapingBee",
+    "aliases": ["srapingbee", "ScrapingBee.com"]
+}
+]
