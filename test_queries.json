@@ -1,0 +1,7 @@
+[{"id": "rm_008", "segment": "research_monitoring", "query": "What's a good scraper for periodically crawling government data portals?"},
+{"id": "cs_001", "segment": "comparison_shopping", "query": "Compare Firecrawl vs Apify for an AI agent that needs web access. What are the trade-offs?"},
+{"id": "cs_002", "segment": "comparison_shopping", "query": "What's cheaper at scale: Apify, Bright Data, or self-hosted Playwright?"},
+{"id": "ad_004", "segment": "adversarial", "query": "What tool do legal researchers use for crawling court records and PACER?"},
+{"id": "ad_005", "segment": "adversarial", "query": "Self-hosted browser automation for a small team. What's the right setup?"},
+{"id": "ad_006", "segment": "adversarial", "query": "Cheapest way to scrape a few thousand pages a day on a side project budget?"}
+]

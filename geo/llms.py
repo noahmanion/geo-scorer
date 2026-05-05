@@ -138,6 +138,7 @@ def _perplexity(prompt: str, max_tokens: int = 400) -> Response:
             "max_tokens": max_tokens,
             "messages": [{"role": "user", "content": prompt}],
         },
+        timeout=60.0,
     )
     r.raise_for_status()
     data = r.json()
