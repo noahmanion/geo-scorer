@@ -157,7 +157,7 @@ def _perplexity(prompt: str, max_tokens: int = 400) -> Response:
         ),
         raw=data,
     )
-def generate(model: ModelName, prompt: str, max_tokens: int = 400) -> Response:
+def generate(model: ModelName, prompt: str, max_tokens: int = 2000) -> Response:
     if model == "claude":
         return _claude(prompt, max_tokens)
     elif model == "gpt":

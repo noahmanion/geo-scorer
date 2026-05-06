@@ -93,7 +93,7 @@ def run_battery(
 
                 # generate the LLM response
                 try:
-                    resp = generate(model, query["query"], max_tokens=400)
+                    resp = generate(model, query["query"], max_tokens=2000)
                 except Exception as e:
                     print(f" [{n_done}/{n_total}] {model}/{query['id']}/r{run_idx}" f" GENERATE FAILED: {e}")
                     continue
