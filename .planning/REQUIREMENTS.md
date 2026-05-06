@@ -7,36 +7,36 @@
 
 ### Data Collection
 
-- [ ] **COLL-01**: System can run a battery of queries against Claude, GPT, Gemini, and Perplexity
-- [ ] **COLL-02**: LLM responses are persisted to SQLite with deduplication (resume-from-failure)
-- [ ] **COLL-03**: Dry-run mode prints plan without making API calls
-- [ ] **COLL-04**: CLI supports filtering to a subset of models and queries
+- [x] **COLL-01**: System can run a battery of queries against Claude, GPT, Gemini, and Perplexity
+- [x] **COLL-02**: LLM responses are persisted to SQLite with deduplication (resume-from-failure)
+- [x] **COLL-03**: Dry-run mode prints plan without making API calls
+- [x] **COLL-04**: CLI supports filtering to a subset of models and queries
 
 ### Scoring
 
-- [ ] **SCOR-01**: Each response is scored against each competitor via Firecrawl structured extraction
-- [ ] **SCOR-02**: Scorer captures: mentioned (bool), position (int), strength (0–3), context_quality (0–3), confidence (float), evidence_quote (str)
-- [ ] **SCOR-03**: One parser call per (response, competitor) to avoid position bias
-- [ ] **SCOR-04**: Parser retries on transient failures (up to 3 attempts with backoff)
+- [x] **SCOR-01**: Each response is scored against each competitor via Firecrawl structured extraction
+- [x] **SCOR-02**: Scorer captures: mentioned (bool), position (int), strength (0–3), context_quality (0–3), confidence (float), evidence_quote (str)
+- [x] **SCOR-03**: One parser call per (response, competitor) to avoid position bias
+- [x] **SCOR-04**: Parser retries on transient failures (up to 3 attempts with backoff)
 
 ### Analysis
 
-- [ ] **ANLY-01**: GEO score computed per (model, segment, competitor) cell using weighted formula
-- [ ] **ANLY-02**: Scores normalized 0–10 across the full matrix
-- [ ] **ANLY-03**: Standard deviation computed per cell for error bars
-- [ ] **ANLY-04**: Headline score aggregated per competitor across all cells (weighted by n_obs)
+- [x] **ANLY-01**: GEO score computed per (model, segment, competitor) cell using weighted formula
+- [x] **ANLY-02**: Scores normalized 0–10 across the full matrix
+- [x] **ANLY-03**: Standard deviation computed per cell for error bars
+- [x] **ANLY-04**: Headline score aggregated per competitor across all cells (weighted by n_obs)
 
 ### Dashboard
 
-- [ ] **DASH-01**: Static dashboard shows Firecrawl's headline GEO score and rank
-- [ ] **DASH-02**: Horizontal bar chart shows all competitors ranked by GEO score
-- [ ] **DASH-03**: Grouped bar chart shows performance by query segment
-- [ ] **DASH-04**: Dashboard deployed on Vercel, served from committed data.json
+- [x] **DASH-01**: Static dashboard shows Firecrawl's headline GEO score and rank
+- [x] **DASH-02**: Horizontal bar chart shows all competitors ranked by GEO score
+- [x] **DASH-03**: Grouped bar chart shows performance by query segment
+- [x] **DASH-04**: Dashboard deployed on Vercel, served from committed data.json
 
 ### Audit
 
-- [ ] **AUDT-01**: Spot-check tool samples 30 random (response, score) pairs for manual review
-- [ ] **AUDT-02**: Spot-check results saved to data/spot_check.json with agreement rate
+- [x] **AUDT-01**: Spot-check tool samples 30 random (response, score) pairs for manual review
+- [x] **AUDT-02**: Spot-check results saved to data/spot_check.json with agreement rate
 
 ## v2 Requirements
 
@@ -91,4 +91,4 @@
 
 ---
 *Requirements defined: 2026-05-06*
-*Last updated: 2026-05-06 after initial definition*
+*Last updated: 2026-05-06 — all v1 requirements marked complete after PoC delivery*
