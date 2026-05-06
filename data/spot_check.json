@@ -1,0 +1,212 @@
+[
+  {
+    "score_id": 708,
+    "competitor": "Bright Data",
+    "model": "perplexity",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 1611,
+    "competitor": "Firecrawl",
+    "model": "perplexity",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 2442,
+    "competitor": "Zyte",
+    "model": "gpt",
+    "agree": false,
+    "notes": "Zyte is not mentioned in the response."
+  },
+  {
+    "score_id": 2010,
+    "competitor": "Zyte",
+    "model": "gemini",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 2758,
+    "competitor": "Browserbase",
+    "model": "gpt",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 60,
+    "competitor": "ScrapingBee",
+    "model": "claude",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 2396,
+    "competitor": "Firecrawl",
+    "model": "gemini",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 859,
+    "competitor": "Zyte",
+    "model": "perplexity",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 829,
+    "competitor": "Zyte",
+    "model": "perplexity",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 2264,
+    "competitor": "Firecrawl",
+    "model": "gpt",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 14,
+    "competitor": "Apify",
+    "model": "claude",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 2990,
+    "competitor": "Firecrawl",
+    "model": "gemini",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 2498,
+    "competitor": "Firecrawl",
+    "model": "gemini",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 1740,
+    "competitor": "Zyte",
+    "model": "perplexity",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 731,
+    "competitor": "Browserbase",
+    "model": "perplexity",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 255,
+    "competitor": "Apify",
+    "model": "claude",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 825,
+    "competitor": "Firecrawl",
+    "model": "perplexity",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 3108,
+    "competitor": "Zyte",
+    "model": "gpt",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 436,
+    "competitor": "Browserbase",
+    "model": "claude",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 3083,
+    "competitor": "Bright Data",
+    "model": "gpt",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 1952,
+    "competitor": "Firecrawl",
+    "model": "gpt",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 3053,
+    "competitor": "Bright Data",
+    "model": "gemini",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 76,
+    "competitor": "Bright Data",
+    "model": "claude",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 3059,
+    "competitor": "Bright Data",
+    "model": "gemini",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 2046,
+    "competitor": "Zyte",
+    "model": "gpt",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 2901,
+    "competitor": "Apify",
+    "model": "gpt",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 1059,
+    "competitor": "Firecrawl",
+    "model": "perplexity",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 1995,
+    "competitor": "Apify",
+    "model": "gpt",
+    "agree": false,
+    "notes": "Apify is not mentioned in the initial response snippet"
+  },
+  {
+    "score_id": 2340,
+    "competitor": "Zyte",
+    "model": "gpt",
+    "agree": true,
+    "notes": ""
+  },
+  {
+    "score_id": 2193,
+    "competitor": "Apify",
+    "model": "gpt",
+    "agree": false,
+    "notes": "I don't see Apify mentioned in the initil snippet that appears"
+  }
+]

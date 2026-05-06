@@ -2,7 +2,10 @@
 __pycache__/git 
 .venv
 *.pyc
-data/
+data/*.sqlite
+data/results.sqlite
+data/.sqlite-journal
 *.sqlite
+*.sqlite-journal
 .sqlite-journal
 .DS_Store
