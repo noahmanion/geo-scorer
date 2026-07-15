@@ -6,6 +6,8 @@ from pathlib import Path
 from collections import defaultdict
 from datetime import datetime, timezone
 
+from geo.config import load_brand
+
 DB_PATH = Path("data/results.sqlite")
 
 
@@ -33,8 +35,34 @@ def presence_rates(db_path=DB_PATH) -> list[dict]:
             for r in rows]
 
 
+def _make_canonicalizer(brand: dict):
+    """Build a function that folds provider-name spelling variants together.
+
+    Any name containing a brand alias (casefolded substring match) collapses
+    to the exact brand name. Everything else collapses on case/whitespace
+    only, keeping the first-seen spelling for display. This intentionally
+    does NOT attempt fuzzy/semantic matching between distinct competitors.
+    """
+    brand_name = brand["name"]
+    aliases = [a.casefold() for a in brand.get("aliases", [])]
+    display_names: dict[str, str] = {}
+
+    def canonicalize(raw_name: str) -> str:
+        folded = raw_name.casefold()
+        if any(alias in folded for alias in aliases):
+            return brand_name
+        key = " ".join(folded.split())
+        if key not in display_names:
+            display_names[key] = raw_name.strip()
+        return display_names[key]
+
+    return canonicalize
+
+
 def competitor_leaderboard(db_path=DB_PATH) -> dict[str, list[dict]]:
     """Per city: every provider named, ranked by mention count, with SoV."""
+    canonicalize = _make_canonicalizer(load_brand())
+
     con = _connect(db_path)
     rows = con.execute("""
         SELECT r.city AS city, e.providers_json AS providers
@@ -44,8 +72,12 @@ def competitor_leaderboard(db_path=DB_PATH) -> dict[str, list[dict]]:
 
     counts: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
     for row in rows:
-        for p in json.loads(row["providers"]):
-            counts[row["city"]][p["name"].strip()] += 1
+        try:
+            providers = json.loads(row["providers"])
+        except (json.JSONDecodeError, TypeError):
+            continue
+        for p in providers:
+            counts[row["city"]][canonicalize(p["name"])] += 1
 
     board: dict[str, list[dict]] = {}
     for city, provs in counts.items():

@@ -57,3 +57,35 @@ def test_export_writes_json(tmp_path):
     score.export_dashboard_data(out_path=str(out), db_path=db)
     payload = json.loads(out.read_text())
     assert "presence" in payload and "leaderboard" in payload
+
+
+def test_competitor_leaderboard_canonicalizes_pinch_spellings(tmp_path):
+    db = tmp_path / "t.sqlite"
+    con = sqlite3.connect(db)
+    con.executescript("""
+      CREATE TABLE responses (id INTEGER PRIMARY KEY, run_date TEXT,
+        model TEXT, city TEXT, query_id TEXT, segment TEXT, run_index INTEGER,
+        prompt TEXT, raw_response TEXT, citations_json TEXT,
+        response_tokens INTEGER, cost_usd REAL);
+      CREATE TABLE extractions (id INTEGER PRIMARY KEY, response_id INTEGER,
+        pinch_present INTEGER, pinch_position INTEGER, pinch_cited INTEGER,
+        providers_json TEXT, evidence_quote TEXT);
+    """)
+    con.execute("INSERT INTO responses (id, city, model, citations_json) "
+                "VALUES (1,'Austin','perplexity','[]')")
+    con.execute("INSERT INTO responses (id, city, model, citations_json) "
+                "VALUES (2,'Austin','perplexity','[]')")
+    con.execute("INSERT INTO extractions (response_id, pinch_present, "
+                "pinch_position, pinch_cited, providers_json, evidence_quote) "
+                "VALUES (1,1,1,1,'[{\"name\":\"Pinch\",\"position\":1},"
+                "{\"name\":\"Glow MedSpa\",\"position\":2}]','q')")
+    con.execute("INSERT INTO extractions (response_id, pinch_present, "
+                "pinch_position, pinch_cited, providers_json, evidence_quote) "
+                "VALUES (2,1,1,1,'[{\"name\":\"Pinch Med Spa\",\"position\":1},"
+                "{\"name\":\"Glow MedSpa\",\"position\":2}]','q')")
+    con.commit(); con.close()
+
+    board = score.competitor_leaderboard(db_path=db)["Austin"]
+    pinch_rows = [p for p in board if p["name"] == "Pinch"]
+    assert len(pinch_rows) == 1
+    assert pinch_rows[0]["mentions"] == 2
