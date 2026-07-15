@@ -87,6 +87,32 @@ class CompetitorScore(BaseModel):
     )
 
 
+class ProviderMention(BaseModel):
+    name: str = Field(description="Name of one business/provider the "
+                      "response names as an option for the user.")
+    position: int = Field(description="1 = first named, 2 = second, etc. "
+                          "Order of first appearance in the response.")
+
+
+class ProviderExtraction(BaseModel):
+    """Every provider an LLM answer names, plus whether Pinch is among them."""
+    providers: list[ProviderMention] = Field(
+        default_factory=list,
+        description="All distinct businesses/providers named as options, "
+                    "in the order first mentioned. Exclude generic advice "
+                    "('ask a dermatologist') and non-providers.")
+    pinch_present: bool = Field(
+        description="True ONLY if Pinch (aka bookpinch / pinchmed / "
+                    "'Pinch Med Spa') is named or unambiguously described. "
+                    "Be strict.")
+    pinch_position: Optional[int] = Field(
+        None, description="Pinch's position among named providers "
+                          "(1=first). Null if not present.")
+    evidence_quote: str = Field(
+        description="Exact sentence naming Pinch, for auditing. Empty "
+                    "string if not present.")
+
+
 _app = Firecrawl(api_key=os.environ["FIRECRAWL_API_KEY"])
 
 
@@ -158,5 +184,54 @@ def score_one_with_retry(
     return None
 
 
+def extract_providers(response_text: str,
+                      brand_aliases: list[str]) -> ProviderExtraction:
+    """Extract every provider an answer names + whether Pinch is present.
+
+    One Firecrawl parser call over the response text.
+    """
+    safe = (response_text
+            .replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;"))
+    html_bytes = f"<html><body><pre>{safe}</pre></body></html>".encode()
+    alias_str = ", ".join(brand_aliases)
+
+    result = _app.parse(
+        html_bytes,
+        filename="response.html",
+        content_type="text/html",
+        options=ScrapeOptions(formats=[{
+            "type": "json",
+            "schema": ProviderExtraction.model_json_schema(),
+            "prompt": (
+                "This page contains an AI assistant's answer to a consumer "
+                "asking who provides at-home aesthetic/med-spa services in a "
+                "city. Extract EVERY specific business or provider the answer "
+                "names as an option, in order of first mention. Exclude "
+                "generic advice and non-providers. Then decide whether the "
+                f"brand 'Pinch' is among them — treat any of these as Pinch: "
+                f"{alias_str}. Be strict: only mark pinch_present if it is "
+                "clearly named. Provide an exact evidence_quote naming Pinch."
+            )
+        }]),
+    )
+    return ProviderExtraction(**result.json)
 
 
+def extract_with_retry(response_text: str, brand_aliases: list[str],
+                       max_attempts: int = 3) -> Optional[ProviderExtraction]:
+    last_error = None
+    for attempt in range(max_attempts):
+        try:
+            return extract_providers(response_text, brand_aliases)
+        except ValidationError as e:
+            print(f"!! extraction validation error: {e}")
+            return None
+        except Exception as e:
+            last_error = e
+            wait = 2 ** attempt
+            print(f"!! attempt {attempt+1} failed: {e}; retrying in {wait}s")
+            time.sleep(wait)
+    print(f"!! all extraction attempts failed: {last_error}")
+    return None

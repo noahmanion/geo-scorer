@@ -1,108 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEO Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&dis
-play=swap" rel="stylesheet">
-<script
-src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-    :root {
-        --ink: #1a1a1a;
-        --sub: #404040;
-        --muted: #6b6b6b;
-        --rule: #e0e0e0;
-        --bg: #fafafa;
-        --accent: #c4410c;
-        --accent-bg: #fef7f0;
-    }
-    * {
-        box-sizing: border-box;
-    }
-    body {
-        font-family: Inter, -apple-system, sans-serif;
-        background: var(--bg); color: var(--ink);
-        margin: 0; padding: 0; line-height: 1.5;
-    }
-    header {
-        background: white; border-bottom: 1px solid var(--rule);
-        padding: 16px 32px;
-        display: flex; justify-content: space-between; align-items: center;
-    }
-    header h1 {font-size: 18px; margin: 0; }
-    header a {
-        color: var(--accent);
-        text-decoration: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    main { max-width: 1100px; margin: 0 auto; padding: 32px; }
-.headline {
-background: white; border: 1px solid var(--rule); border-radius: 8px;
-padding: 32px; margin-bottom: 24px; 
-}
-.headline .label { color: var(--muted); font-size: 13px;
-    text-transform: uppercase; letter-spacing: 0.05em; }
-.headline .score { font-size: 56px; font-weight: 700; line-height: 1; }
-.headline .score .scale { font-size: 22px; color: var(--muted); }
-.headline .meta { color: var(--sub); margin-top: 8px; }
-.compare { color: var(--sub); margin-top: 12px; }
-.compare strong { color: var(--ink); }
-.panel {
-    background: white; border: 1px solid var(--rule); border-radius: 8px;
-    padding: 24px; margin-bottom: 24px;
-}
-.panel h2 {
-    font-size: 18px; margin: 0 0 16px 0;
-    padding-bottom: 12px; border-bottom: 1px solid var(--rule);
-}
-canvas {max-height: 360px;}
-.grid{
-    gap: 16px;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-.heatmap-cell {
-    padding: 8px 12px; font-size: 12px;
-    border-radius: 4px; color: white;
-    font-weight: 600;
-}
-.footer { color: var(--muted); font-size: 12px; padding: 32px; text-align: center;  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pinch — GEO Visibility Snapshot</title>
+  <style>
+    :root { --pinch: #c4410c; --ink: #1a1a1a; --muted: #666; --line: #eee; }
+    body { font: 15px/1.5 -apple-system, system-ui, sans-serif; margin: 2rem auto;
+           max-width: 1080px; color: var(--ink); padding: 0 1rem; }
+    h1 { margin-bottom: .25rem; }
+    h2 { margin-top: 2.5rem; }
+    .sub { color: var(--muted); margin-top: 0; }
+    table { border-collapse: collapse; margin: 1rem 0; }
+    th, td { padding: .5rem .7rem; text-align: center; border: 1px solid var(--line); }
+    th { background: #fafafa; }
+    .heat { color: #fff; font-weight: 600; white-space: nowrap; }
+    .heat small { font-weight: 400; opacity: .9; }
+
+    /* leaderboard */
+    .board { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+             gap: 1.25rem; }
+    .city-card { border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
+    .city-card h3 { margin: 0 0 .1rem; }
+    .city-card .count { color: var(--muted); font-size: 12px; margin-bottom: .6rem; }
+    .lb-row { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
+    .lb-name { flex: 0 0 44%; overflow: hidden; text-overflow: ellipsis;
+               white-space: nowrap; font-size: 13px; }
+    .lb-bar { flex: 1; background: #f2f2f2; border-radius: 4px; height: 14px;
+              position: relative; overflow: hidden; }
+    .lb-bar > i { display: block; height: 100%; background: var(--pinch);
+                  opacity: .3; border-radius: 4px; }
+    .lb-row.pinch .lb-name { font-weight: 700; color: var(--pinch); }
+    .lb-row.pinch .lb-bar > i { opacity: 1; }
+    .lb-val { flex: 0 0 auto; font-size: 12px; color: var(--muted);
+              font-variant-numeric: tabular-nums; min-width: 62px; text-align: right; }
+    details.more > summary { cursor: pointer; color: var(--pinch); font-size: 13px;
+                             margin-top: .5rem; }
+
+    /* queries */
+    .qseg { margin: .3rem 0; }
+    .qseg b { text-transform: capitalize; }
+    .qlist { margin: .2rem 0 .8rem 1rem; color: #333; }
+    .qlist li { margin: .15rem 0; }
+
+    /* drilldown */
+    .filters { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center;
+               margin: 1rem 0; }
+    .filters select, .filters input[type=search] {
+      padding: .35rem .5rem; border: 1px solid #ccc; border-radius: 6px; font: inherit; }
+    .filters label { font-size: 13px; color: var(--muted); }
+    .count-note { color: var(--muted); font-size: 13px; }
+    .ans { border: 1px solid var(--line); border-radius: 8px; padding: .7rem .9rem;
+           margin: .6rem 0; }
+    .ans-head { display: flex; flex-wrap: wrap; gap: .5rem; align-items: baseline; }
+    .tag { font-size: 11px; padding: 1px 7px; border-radius: 10px; background: #f0f0f0;
+           color: #444; }
+    .tag.city { background: #eef3f8; }
+    .badge { font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 10px; }
+    .badge.yes { background: #e8f3ea; color: #256b36; }
+    .badge.no  { background: #f7ebe8; color: #9a3a26; }
+    .ans .q { font-weight: 600; margin: .35rem 0 .2rem; }
+    .ans .ev { font-style: italic; color: #333; border-left: 3px solid var(--pinch);
+               padding-left: .6rem; margin: .35rem 0; }
+    .chips { margin: .3rem 0; }
+    .chip { display: inline-block; font-size: 11px; padding: 1px 7px; margin: 2px;
+            border-radius: 10px; background: #f4f4f4; }
+    .chip.pinch { background: var(--pinch); color: #fff; }
+    .ans details > summary { cursor: pointer; color: var(--pinch); font-size: 13px; }
+    .ans pre { white-space: pre-wrap; font: 13px/1.5 ui-monospace, monospace;
+               background: #fafafa; padding: .6rem; border-radius: 6px; overflow-x: auto; }
+    .cite { font-size: 12px; color: var(--muted); word-break: break-all; }
+  </style>
 </head>
 <body>
-<header>
-<h1>GEO Tracker</h1>
-<div>
-    <a href="measurement.html">How this is measured</a>
-</div>
-</header>
-<main>
-    <section class="headline" id="headline">
-        <div class="label">Firecrawl GEO Score</div>
-        <div class="score">
-            <span id="firecrawl-score">-</span>
-            <span class="scale">/ 100</span>
-        </div>
-        <div class="meta" id="headline-meta">Loading...</div>
-        <div class="compare" id="headline-compare"></div>
-    </section>
+  <h1>Pinch — GEO Visibility Snapshot</h1>
+  <p class="sub" id="subtitle"></p>
 
-    <div class="panel">
-        <h2>Competitive ranking</h2>
-        <canvas id="rankingChart"></canvas>
-    </div>
+  <h2>Presence Rate — how often an AI names Pinch</h2>
+  <p class="sub">% of answers naming Pinch, by city and engine (citation % in parens,
+     sample size <code>n</code>). Higher = more visible.</p>
+  <div id="heatmap"></div>
 
-    <div class="panel">
-        <h2>Performance by segment</h2>
-        <canvas id="segmentChart"></canvas>
-    </div>
-</main>
+  <h3>By engine (all cities)</h3>
+  <div id="engine-table"></div>
 
-<div class="footer" id="footer">Loading...</div>
+  <h2>Who the AI recommends instead (emergent competitors)</h2>
+  <p class="sub">Every provider the engines named, ranked by mentions with share of
+     voice. Pinch highlighted.</p>
+  <div class="board" id="leaderboard"></div>
 
-<script src="dashboard.js"></script>
+  <h2>Queries asked</h2>
+  <p class="sub">The templates fired at each engine, with <code>{city}</code> filled per
+     market.</p>
+  <div id="queries"></div>
+
+  <h2>Answer drill-down</h2>
+  <p class="sub">Every individual answer, the judge's Pinch verdict, the evidence quote,
+     and the competitors named. Use the filters to audit data quality.</p>
+  <div class="filters" id="filters"></div>
+  <div class="count-note" id="drill-count"></div>
+  <div id="drilldown"></div>
+
+  <script src="dashboard.js"></script>
 </body>
 </html>

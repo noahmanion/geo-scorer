@@ -1,112 +1,192 @@
-const COLORS = {
-    Firecrawl: '#c4410c',
-    Apify: '#3a6ea5',
-    Browserbase: '#4a8c5e',
-    'Bright Data': '#8a4ea5',
-    Zyte: '#a55a3a',
-    ScrapingBee: '#666666',
-};
-
-function formatSegment(s) {
-    return s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
 }
 
-function setHeadlineCompare(el, rank, total, topCompetitor, topScore) {
-    el.textContent = '';
-    const strong = document.createElement('strong');
-    if (rank === 1) {
-        strong.textContent = `#1 of ${total}.`;
-        el.appendChild(strong);
-        el.appendChild(document.createTextNode(' Leading the set.'));
-    } else {
-        strong.textContent = `#${rank} of ${total},`;
-        el.appendChild(strong);
-        el.appendChild(document.createTextNode(
-            ` behind ${topCompetitor} (${topScore.toFixed(2)}).`
-        ));
+function heatColor(rate) {
+  // 0 -> light grey, 1 -> Pinch orange
+  const r = Math.round(0xf0 + (0xc4 - 0xf0) * rate);
+  const g = Math.round(0xf0 + (0x41 - 0xf0) * rate);
+  const b = Math.round(0xf0 + (0x0c - 0xf0) * rate);
+  return `rgb(${r},${g},${b})`;
+}
+
+const pct = x => (x * 100).toFixed(0) + '%';
+const isPinch = name => /pinch/i.test(name);
+
+// ---- Presence heatmap (city x engine) ----
+function renderHeatmap(data) {
+  const cities = [...new Set(data.presence.map(p => p.city))];
+  const models = [...new Set(data.presence.map(p => p.model))];
+  const lookup = {};
+  data.presence.forEach(p => { lookup[`${p.city}|${p.model}`] = p; });
+
+  let html = '<table><thead><tr><th>City \\ Engine</th>' +
+    models.map(m => `<th>${esc(m)}</th>`).join('') + '</tr></thead><tbody>';
+  for (const city of cities) {
+    html += `<tr><th>${esc(city)}</th>`;
+    for (const m of models) {
+      const cell = lookup[`${city}|${m}`];
+      if (!cell) { html += '<td>—</td>'; continue; }
+      html += `<td class="heat" style="background:${heatColor(cell.presence_rate)}"
+        title="n=${cell.n}">${pct(cell.presence_rate)}
+        <small>(${pct(cell.citation_rate)})</small>
+        <small>n=${cell.n}</small></td>`;
     }
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  document.getElementById('heatmap').innerHTML = html;
+}
+
+// ---- Presence by engine (all cities) ----
+function renderEngineTable(data) {
+  const rows = data.presence_by_engine || [];
+  let html = '<table><thead><tr><th>Engine</th><th>Presence</th>' +
+    '<th>Citation</th><th>n</th></tr></thead><tbody>';
+  for (const r of rows) {
+    html += `<tr><td>${esc(r.model)}</td>
+      <td style="background:${heatColor(r.presence_rate)};color:#fff;font-weight:600">
+      ${pct(r.presence_rate)}</td>
+      <td>${pct(r.citation_rate)}</td><td>${r.n}</td></tr>`;
+  }
+  html += '</tbody></table>';
+  document.getElementById('engine-table').innerHTML = html;
+}
+
+// ---- Competitor leaderboard ----
+function lbRow(p, max) {
+  const w = (p.mentions / max * 100).toFixed(0);
+  const cls = isPinch(p.name) ? 'lb-row pinch' : 'lb-row';
+  return `<div class="${cls}">
+    <span class="lb-name" title="${esc(p.name)}">${esc(p.name)}</span>
+    <span class="lb-bar"><i style="width:${w}%"></i></span>
+    <span class="lb-val">${p.mentions} · ${pct(p.share_of_voice)}</span></div>`;
+}
+
+function renderLeaderboard(data) {
+  const board = document.getElementById('leaderboard');
+  board.innerHTML = '';
+  for (const city of Object.keys(data.leaderboard)) {
+    const all = data.leaderboard[city];
+    const max = Math.max(...all.map(p => p.mentions), 1);
+    const top = all.slice(0, 15);
+    const rest = all.slice(15);
+    const card = document.createElement('div');
+    card.className = 'city-card';
+    let html = `<h3>${esc(city)}</h3>
+      <div class="count">${all.length} providers named</div>` +
+      top.map(p => lbRow(p, max)).join('');
+    if (rest.length) {
+      html += `<details class="more"><summary>show ${rest.length} more</summary>` +
+        rest.map(p => lbRow(p, max)).join('') + '</details>';
+    }
+    card.innerHTML = html;
+    board.appendChild(card);
+  }
+}
+
+// ---- Queries reference ----
+function renderQueries(data) {
+  const bySeg = {};
+  (data.queries || []).forEach(q => {
+    (bySeg[q.segment] = bySeg[q.segment] || []).push(q);
+  });
+  let html = '';
+  for (const seg of Object.keys(bySeg)) {
+    html += `<div class="qseg"><b>${esc(seg.replace(/_/g, ' '))}</b></div>
+      <ul class="qlist">` +
+      bySeg[seg].map(q =>
+        `<li><code>${esc(q.id)}</code> — ${esc(q.template)}</li>`).join('') +
+      '</ul>';
+  }
+  document.getElementById('queries').innerHTML = html;
+}
+
+// ---- Answer drill-down ----
+function optionList(values) {
+  return ['<option value="">all</option>']
+    .concat(values.map(v => `<option value="${esc(v)}">${esc(v)}</option>`))
+    .join('');
+}
+
+function renderDrilldown(data) {
+  const details = data.details || [];
+  const cities = [...new Set(details.map(d => d.city))].sort();
+  const models = [...new Set(details.map(d => d.model))].sort();
+  const queries = [...new Set(details.map(d => d.query_id))].sort();
+
+  const filters = document.getElementById('filters');
+  filters.innerHTML = `
+    <label>City <select id="f-city">${optionList(cities)}</select></label>
+    <label>Engine <select id="f-model">${optionList(models)}</select></label>
+    <label>Query <select id="f-query">${optionList(queries)}</select></label>
+    <label><input type="checkbox" id="f-pinch"> Pinch present only</label>
+    <input type="search" id="f-text" placeholder="search answer / provider text" size="28">`;
+
+  ['f-city', 'f-model', 'f-query', 'f-pinch', 'f-text']
+    .forEach(id => document.getElementById(id).addEventListener('input', draw));
+
+  function draw() {
+    const [city, model, query] = ['f-city', 'f-model', 'f-query']
+      .map(id => document.getElementById(id).value);
+    const pinchOnly = document.getElementById('f-pinch').checked;
+    const q = document.getElementById('f-text').value.trim().toLowerCase();
+
+    const rows = details.filter(d =>
+      (!city || d.city === city) &&
+      (!model || d.model === model) &&
+      (!query || d.query_id === query) &&
+      (!pinchOnly || d.pinch_present) &&
+      (!q || (d.answer || '').toLowerCase().includes(q) ||
+             d.providers.some(p => p.toLowerCase().includes(q))));
+
+    document.getElementById('drill-count').textContent =
+      `${rows.length} of ${details.length} answers` +
+      (rows.length ? ` · ${rows.filter(r => r.pinch_present).length} name Pinch` : '');
+
+    document.getElementById('drilldown').innerHTML = rows.map(ansCard).join('');
+  }
+  draw();
+}
+
+function ansCard(d) {
+  const badge = d.pinch_present
+    ? `<span class="badge yes">Pinch: yes${d.pinch_position ?
+        ' · #' + d.pinch_position : ''}</span>`
+    : `<span class="badge no">Pinch: no</span>`;
+  const chips = d.providers.map(p =>
+    `<span class="chip ${isPinch(p) ? 'pinch' : ''}">${esc(p)}</span>`).join('');
+  const cites = (d.citations || []).length
+    ? `<details><summary>${d.citations.length} citations</summary>` +
+      d.citations.map(c => `<div class="cite">${esc(c)}</div>`).join('') +
+      '</details>'
+    : '';
+  return `<div class="ans">
+    <div class="ans-head">
+      <span class="tag city">${esc(d.city)}</span>
+      <span class="tag">${esc(d.model)}</span>
+      <span class="tag">${esc(d.query_id)}</span>
+      ${badge}
+      ${d.pinch_cited ? '<span class="tag">bookpinch.com cited</span>' : ''}
+    </div>
+    <div class="q">${esc(d.query)}</div>
+    ${d.evidence_quote ? `<div class="ev">${esc(d.evidence_quote)}</div>` : ''}
+    <div class="chips">${chips || '<span class="tag">no providers parsed</span>'}</div>
+    <details><summary>full answer</summary><pre>${esc(d.answer || '')}</pre>${cites}</details>
+  </div>`;
 }
 
 async function main() {
-    const data = await fetch('data.json').then(r => r.json());
-
-    // ---- HEADLINE ----
-    const fc = data.headline.find(h => h.competitor === 'Firecrawl');
-    const top = data.headline[0];
-    document.getElementById('firecrawl-score').textContent =
-        fc.geo_score.toFixed(2);
-    document.getElementById('headline-meta').textContent =
-        `Across ${fc.n_obs} observations on ${fc.n_cells} segments`;
-    const rank = data.headline.findIndex(h => h.competitor === 'Firecrawl') + 1;
-    setHeadlineCompare(
-        document.getElementById('headline-compare'),
-        rank, data.headline.length, top.competitor, top.geo_score
-    );
-
-    // ---- RANKING CHART ----
-    new Chart(document.getElementById('rankingChart'), {
-        type: 'bar',
-        data: {
-            labels: data.headline.map(h => h.competitor),
-            datasets: [{
-                label: 'GEO Score',
-                data: data.headline.map(h => h.geo_score),
-                backgroundColor: data.headline.map(h => COLORS[h.competitor] || '#999'),
-                borderColor: data.headline.map(h =>
-                    h.competitor === 'Firecrawl' ? '#000' : 'transparent'
-                ),
-                borderWidth: 2,
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            plugins: { legend: { display: false } },
-            scales: {
-                x: { beginAtZero: true, max: 10, title: {
-                    display: true, text: 'GEO Score (0-10)' } }
-            }
-        }
-    });
-
-    // ---- SEGMENT BREAKDOWN ----
-    const segments = [...new Set(data.cells.map(c => c.segment))];
-    const competitors = [...new Set(data.cells.map(c => c.competitor))];
-    const segmentData = competitors.map(comp => {
-        return {
-            label: comp,
-            data: segments.map(seg => {
-                const matching = data.cells.filter(
-                    c => c.competitor === comp && c.segment === seg
-                );
-                const avg = matching.length ?
-                    matching.reduce((s, c) => s + c.geo_score, 0) / matching.length : 0;
-                return avg;
-            }),
-            backgroundColor: COLORS[comp] || '#999',
-            borderColor: comp === 'Firecrawl' ? '#000' : 'transparent',
-            borderWidth: comp === 'Firecrawl' ? 2 : 0,
-        };
-    });
-    new Chart(document.getElementById('segmentChart'), {
-        type: 'bar',
-        data: { labels: segments.map(formatSegment), datasets: segmentData },
-        options: {
-            plugins: { legend: { position: 'bottom' } },
-            scales: {
-                y: { beginAtZero: true, max: 10, title: {
-                    display: true, text: 'GEO Score' } }
-            }
-        }
-    });
-
-    // ---- FOOTER ----
-    const ts = new Date(data.generated_at);
-    document.getElementById('footer').textContent =
-        `Data as of ${ts.toLocaleString()} • ${data.cells.length} cells • ` +
-        `Methodology disclosed in README`;
+  const data = await fetch('data.json').then(r => r.json());
+  document.getElementById('subtitle').textContent =
+    `Brand: ${data.brand} · generated ${new Date(data.generated_at).toLocaleString()}`;
+  renderHeatmap(data);
+  renderEngineTable(data);
+  renderLeaderboard(data);
+  renderQueries(data);
+  renderDrilldown(data);
 }
 
-main().catch(err => {
-    document.getElementById('footer').textContent =
-        'Error loading data: ' + err.message;
-});
+main();

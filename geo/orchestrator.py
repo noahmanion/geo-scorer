@@ -8,8 +8,9 @@ import time
 from pathlib import Path
 from datetime import datetime, timezone
 
+from . import config
 from .llms import generate, ALL_MODELS, ModelName
-from .parser import score_one_with_retry
+from .parser import extract_with_retry
 
 DB_PATH = Path("data/results.sqlite")
 
@@ -18,30 +19,30 @@ CREATE TABLE IF NOT EXISTS responses (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     run_date TEXT NOT NULL,
     model TEXT NOT NULL,
+    city TEXT NOT NULL,
     query_id TEXT NOT NULL,
     segment TEXT NOT NULL,
     run_index INTEGER NOT NULL,
+    prompt TEXT NOT NULL,
     raw_response TEXT NOT NULL,
+    citations_json TEXT NOT NULL,
     response_tokens INTEGER NOT NULL,
     cost_usd REAL NOT NULL,
-    UNIQUE(run_date, model, query_id, run_index)
+    UNIQUE(run_date, model, city, query_id, run_index)
 );
 
-CREATE TABLE IF NOT EXISTS scores (
+CREATE TABLE IF NOT EXISTS extractions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     response_id INTEGER NOT NULL,
-    competitor TEXT NOT NULL,
-    mentioned INTEGER NOT NULL,
-    position INTEGER,
-    strength INTEGER NOT NULL,
-    context_quality INTEGER NOT NULL,
-    confidence REAL,
+    pinch_present INTEGER NOT NULL,
+    pinch_position INTEGER,
+    pinch_cited INTEGER NOT NULL,
+    providers_json TEXT NOT NULL,
     evidence_quote TEXT,
     FOREIGN KEY(response_id) REFERENCES responses(id)
 );
-CREATE INDEX IF NOT EXISTS idx_scores_recap ON scores(response_id);
-CREATE INDEX IF NOT EXISTS idx_resp_query ON responses(query_id, model);
-
+CREATE INDEX IF NOT EXISTS idx_extr_resp ON extractions(response_id);
+CREATE INDEX IF NOT EXISTS idx_resp_cell ON responses(city, model, query_id);
 """
 
 def init_db():
@@ -52,127 +53,102 @@ def init_db():
     con.close()
 
 
-def run_battery(
-        queries_path: str = "queries.json",
-        competitors_path: str = "competitors.json",
-        # reducing this reduces cost, but you lose some statistical power 
-        runs_per_cell: int = 2, 
-        models: list[ModelName] = None,
-):
+def run_battery(runs_per_cell: int = 3,
+                models: list[ModelName] = None):
     init_db()
-
-    queries = json.loads(Path(queries_path).read_text())
-    competitors = [c["name"] for c in
-                   json.loads(Path(competitors_path).read_text())]
+    cities = config.load_cities()
+    queries = config.load_queries()
+    brand = config.load_brand()
+    cells = config.expand_cells(cities, queries)
     models = models or ALL_MODELS
 
     today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-    total_cost = 0.0
-
     con = sqlite3.connect(DB_PATH)
 
-    n_total = len(queries) * len(models) * runs_per_cell
-    n_done = 0
-    n_skipped = 0
+    n_total = len(cells) * len(models) * runs_per_cell
+    n_done = n_skipped = 0
     started = time.time()
 
-    for query in queries:
+    for cell in cells:
         for model in models:
-            for run_idx in range(1 , runs_per_cell + 1):
+            for run_idx in range(1, runs_per_cell + 1):
                 n_done += 1
-
-                # in the db? skip it.
                 row = con.execute(
-                        "Select id from responses where run_date=? " \
-                        "and model=? and query_id=? and run_index=? ",
-                        (today, model, query["id"], run_idx)
+                    "SELECT id FROM responses WHERE run_date=? AND model=? "
+                    "AND city=? AND query_id=? AND run_index=?",
+                    (today, model, cell["city"], cell["query_id"], run_idx),
                 ).fetchone()
                 if row is not None:
                     n_skipped += 1
                     continue
 
-                # generate the LLM response
                 try:
-                    resp = generate(model, query["query"], max_tokens=2000)
+                    resp = generate(model, cell["prompt"], max_tokens=2000)
                 except Exception as e:
-                    print(f" [{n_done}/{n_total}] {model}/{query['id']}/r{run_idx}" f" GENERATE FAILED: {e}")
+                    print(f" [{n_done}/{n_total}] {model}/{cell['city']}/"
+                          f"{cell['query_id']}/r{run_idx} GENERATE FAILED: {e}")
                     continue
 
-                # 2: persist the response
                 cur = con.execute(
-                    "INSERT INTO responses (run_date, model, query_id, " \
-                    "segment, run_index, raw_response, response_tokens, cost_usd) " \
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                    (today, model, query["id"], query["segment"], run_idx,
-                     resp.text, resp.output_tokens, resp.cost_usd)
+                    "INSERT INTO responses (run_date, model, city, query_id, "
+                    "segment, run_index, prompt, raw_response, citations_json, "
+                    "response_tokens, cost_usd) "
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                    (today, model, cell["city"], cell["query_id"],
+                     cell["segment"], run_idx, cell["prompt"], resp.text,
+                     json.dumps(resp.citations), resp.output_tokens,
+                     resp.cost_usd),
                 )
                 response_id = cur.lastrowid
                 con.commit()
 
-                # 3: score the response
-                for competitor in competitors:
-                    score = score_one_with_retry(resp.text, competitor)
-                    if score is None:
-                        continue
+                extraction = extract_with_retry(resp.text, brand["aliases"])
+                if extraction is not None:
+                    pinch_cited = config.brand_domain_cited(
+                        brand["domain"], resp.citations)
                     con.execute(
-                        "INSERT INTO scores (response_id, competitor, " \
-                        "mentioned, position, strength, context_quality, " \
-                        "confidence, evidence_quote) " \
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                        (response_id, competitor, 1 if score.mentioned else 0,
-                         score.position, score.strength, score.context_quality,
-                         score.confidence, score.evidence_quote)
+                        "INSERT INTO extractions (response_id, pinch_present, "
+                        "pinch_position, pinch_cited, providers_json, "
+                        "evidence_quote) VALUES (?,?,?,?,?,?)",
+                        (response_id, 1 if extraction.pinch_present else 0,
+                         extraction.pinch_position, 1 if pinch_cited else 0,
+                         json.dumps([{"name": p.name, "position": p.position}
+                                     for p in extraction.providers]),
+                         extraction.evidence_quote),
                     )
-
-                con.commit()
+                    con.commit()
 
                 elapsed = time.time() - started
                 avg = elapsed / max(1, n_done - n_skipped)
                 eta = avg * (n_total - n_done)
-                print(f" [{n_done}/{n_total}] {model}/{query['id']}/r{run_idx} "
-                      f"done. cost=${resp.cost_usd:.3f} "
-                      f"eta={int(eta/60)}m")
+                print(f" [{n_done}/{n_total}] {model}/{cell['city']}/"
+                      f"{cell['query_id']}/r{run_idx} done "
+                      f"cost=${resp.cost_usd:.3f} eta={int(eta/60)}m")
 
     con.close()
     print(f"\n[done] {n_done} cells, {n_skipped} skipped, "
-          f"total cost=${total_cost:.3f} "
           f"elapsed {int((time.time()-started)/60)}m")
 
 
 if __name__ == "__main__":
     import argparse
-    parser = argparse.ArgumentParser(
-        description="Run the GEO measurement battery."
-    )
-    parser.add_argument("--queries", default="queries.json")
-    parser.add_argument("--competitors", default="competitors.json")
-    parser.add_argument("--runs", type=int, default=3)
-    parser.add_argument("--models", nargs="+",
-                        default=None,
-                        help= "Subset of models. Default: All 4.")
-    parser.add_argument("--dry-run", action="store_true",
-                        help="Print plan without making API calls.")
-    args = parser.parse_args()
+    ap = argparse.ArgumentParser(description="Run the Pinch GEO battery.")
+    ap.add_argument("--runs", type=int, default=3)
+    ap.add_argument("--models", nargs="+", default=None,
+                    help="Subset of models. Default: all 4.")
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
 
     if args.dry_run:
-        queries = json.loads(Path(args.queries).read_text())
-        competitors = json.loads(Path(args.competitors).read_text())
+        cities = config.load_cities()
+        queries = config.load_queries()
         models = args.models or ALL_MODELS
-        n_cells = len(queries) * len(models) * args.runs
-        n_scores = n_cells * len(competitors)
-        print(f"DRY RUN")
-        print(f" queries: {len(queries)}")
-        print(f" models: {len(models)}")
-        print(f" runs/cell: {args.runs}")
-        print(f" competitors: {len(competitors)}")
-        print(f" total cells: {n_cells}")
-        print(f" total scores: {n_scores}")
-        print(f" est cost: LLM ${n_cells * 0.005:.2f}, "
-              f"FC ${n_scores * 0.02:.2f}")
+        n_cells = len(cities) * len(queries) * len(models) * args.runs
+        print("DRY RUN")
+        print(f" cities: {len(cities)}  queries: {len(queries)}")
+        print(f" models: {len(models)}  runs/cell: {args.runs}")
+        print(f" total generations: {n_cells}")
+        print(f" est cost: LLM+search ${n_cells * 0.02:.2f}, "
+              f"Firecrawl parse ${n_cells * 0.02:.2f}")
     else:
-        run_battery(
-            queries_path=args.queries,
-            competitors_path=args.competitors,
-            runs_per_cell=args.runs,
-            models=args.models,
-        )
+        run_battery(runs_per_cell=args.runs, models=args.models)
