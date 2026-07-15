@@ -1,9 +1,27 @@
 [
   { "id": "disc_001", "segment": "discovery", "template": "Who offers at-home or mobile Botox in {city}?" },
   { "id": "disc_002", "segment": "discovery", "template": "Is there a med spa that comes to your house in {city}? Who are the options?" },
+  { "id": "disc_003", "segment": "discovery", "template": "What's the best mobile med spa in {city} that comes to you?" },
+  { "id": "disc_004", "segment": "discovery", "template": "Are there concierge aesthetic nurses who make house calls in {city}?" },
+  { "id": "disc_005", "segment": "discovery", "template": "I want cosmetic injectables done at my home in {city}. Who should I contact?" },
   { "id": "intent_001", "segment": "category_intent", "template": "I want Botox but I don't want to go into a clinic in {city}. What are my options for getting it done at home?" },
   { "id": "svc_001", "segment": "service_specific", "template": "Where can I get at-home dermal fillers in {city}?" },
   { "id": "svc_002", "segment": "service_specific", "template": "Who does mobile microneedling or facials at home in {city}?" },
+  { "id": "svc_003", "segment": "service_specific", "template": "Where can I get lip filler done at home in {city}?" },
+  { "id": "svc_004", "segment": "service_specific", "template": "Who offers an at-home HydraFacial or 'glow' facial in {city}?" },
+  { "id": "svc_005", "segment": "service_specific", "template": "Can someone come to my house in {city} for a chemical peel or PDRN treatment?" },
+  { "id": "svc_006", "segment": "service_specific", "template": "Where can I get Botox for hyperhidrosis (excessive sweating) or TMJ at home in {city}?" },
+  { "id": "cmp_001", "segment": "comparison", "template": "What are the best at-home Botox services in {city}, ranked?" },
+  { "id": "cmp_002", "segment": "comparison", "template": "Is a mobile med spa or an in-office clinic better for Botox in {city}?" },
+  { "id": "cmp_003", "segment": "comparison", "template": "Who are the top concierge aesthetic providers in {city} that come to your home?" },
+  { "id": "cost_001", "segment": "cost", "template": "How much does at-home Botox cost in {city}, and who provides it?" },
+  { "id": "cost_002", "segment": "cost", "template": "Any affordable mobile Botox or filler options in {city}?" },
+  { "id": "conv_001", "segment": "convenience", "template": "I'm a busy professional in {city} with no time for a med spa. Can someone bring Botox to me?" },
+  { "id": "conv_002", "segment": "convenience", "template": "How do I book an in-home Botox or filler appointment in {city}?" },
+  { "id": "safe_001", "segment": "safety_trust", "template": "Is at-home Botox safe, and are there licensed providers who do house calls in {city}?" },
+  { "id": "safe_002", "segment": "safety_trust", "template": "Who are the board-certified nurse injectors offering house-call aesthetics in {city}?" },
   { "id": "occ_001", "segment": "occasion", "template": "I want to host a Botox party in {city}. Who can send a nurse injector to my home?" },
-  { "id": "brand_001", "segment": "brand_aware", "template": "Is Pinch (bookpinch.com), the at-home med spa in {city}, legit? What do reviews say?" }
+  { "id": "occ_002", "segment": "occasion", "template": "I have a wedding in {city} soon and want Botox and a facial done at home beforehand. Who can help?" },
+  { "id": "brand_001", "segment": "brand_aware", "template": "Is Pinch (bookpinch.com), the at-home med spa in {city}, legit? What do reviews say?" },
+  { "id": "brand_002", "segment": "brand_aware", "template": "How does Pinch (bookpinch.com) compare to other at-home med spas in {city}? Is it worth it?" }
 ]

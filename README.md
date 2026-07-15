@@ -45,7 +45,7 @@ way to measure GEO at scale — but an approximation.
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env   # add ANTHROPIC/OPENAI/GEMINI/PERPLEXITY/FIRECRAWL keys
-python -m geo.orchestrator --dry-run     # check the plan (420 generations)
+python -m geo.orchestrator --dry-run     # check the plan (counts depend on cities.json x queries.json x --runs)
 python -m geo.orchestrator               # full run
 python -m geo.score                      # export dashboard/data.json
 cd dashboard && python -m http.server 8000
