@@ -2,6 +2,7 @@
 from __future__ import annotations
 import json
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 def load_cities(path: str = "cities.json") -> list[dict]:
@@ -33,3 +34,16 @@ def expand_cells(cities: list[dict], queries: list[dict]) -> list[dict]:
                 "prompt": q["template"].replace("{city}", label),
             })
     return cells
+
+
+def brand_domain_cited(domain: str, citations: list[str]) -> bool:
+    """True if `domain` is the host of any citation URL.
+
+    Ignores a leading `www.`, is case-insensitive, and ignores path.
+    """
+    target = domain.lower().removeprefix("www.")
+    for url in citations or []:
+        host = (urlparse(url).netloc or "").lower().removeprefix("www.")
+        if host == target:
+            return True
+    return False
