@@ -1,0 +1,7 @@
+[
+  { "name": "Chicago", "state": "IL" },
+  { "name": "Phoenix", "state": "AZ" },
+  { "name": "Denver", "state": "CO" },
+  { "name": "Seattle", "state": "WA" },
+  { "name": "Washington", "state": "DC" }
+]
