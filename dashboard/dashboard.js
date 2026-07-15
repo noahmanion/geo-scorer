@@ -34,7 +34,7 @@ async function main() {
       const pr = (cell.presence_rate * 100).toFixed(0);
       const cr = (cell.citation_rate * 100).toFixed(0);
       html += `<td class="heat" style="background:${heatColor(
-        cell.presence_rate)}">${pr}% <small>(${cr}%)</small></td>`;
+        cell.presence_rate)}" title="n=${cell.n}">${pr}% <small>(${cr}%)</small> <small>n=${cell.n}</small></td>`;
     }
     html += '</tr>';
   }
