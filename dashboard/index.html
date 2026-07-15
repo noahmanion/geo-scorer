@@ -1,108 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEO Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&dis
-play=swap" rel="stylesheet">
-<script
-src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-    :root {
-        --ink: #1a1a1a;
-        --sub: #404040;
-        --muted: #6b6b6b;
-        --rule: #e0e0e0;
-        --bg: #fafafa;
-        --accent: #c4410c;
-        --accent-bg: #fef7f0;
-    }
-    * {
-        box-sizing: border-box;
-    }
-    body {
-        font-family: Inter, -apple-system, sans-serif;
-        background: var(--bg); color: var(--ink);
-        margin: 0; padding: 0; line-height: 1.5;
-    }
-    header {
-        background: white; border-bottom: 1px solid var(--rule);
-        padding: 16px 32px;
-        display: flex; justify-content: space-between; align-items: center;
-    }
-    header h1 {font-size: 18px; margin: 0; }
-    header a {
-        color: var(--accent);
-        text-decoration: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    main { max-width: 1100px; margin: 0 auto; padding: 32px; }
-.headline {
-background: white; border: 1px solid var(--rule); border-radius: 8px;
-padding: 32px; margin-bottom: 24px; 
-}
-.headline .label { color: var(--muted); font-size: 13px;
-    text-transform: uppercase; letter-spacing: 0.05em; }
-.headline .score { font-size: 56px; font-weight: 700; line-height: 1; }
-.headline .score .scale { font-size: 22px; color: var(--muted); }
-.headline .meta { color: var(--sub); margin-top: 8px; }
-.compare { color: var(--sub); margin-top: 12px; }
-.compare strong { color: var(--ink); }
-.panel {
-    background: white; border: 1px solid var(--rule); border-radius: 8px;
-    padding: 24px; margin-bottom: 24px;
-}
-.panel h2 {
-    font-size: 18px; margin: 0 0 16px 0;
-    padding-bottom: 12px; border-bottom: 1px solid var(--rule);
-}
-canvas {max-height: 360px;}
-.grid{
-    gap: 16px;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-.heatmap-cell {
-    padding: 8px 12px; font-size: 12px;
-    border-radius: 4px; color: white;
-    font-weight: 600;
-}
-.footer { color: var(--muted); font-size: 12px; padding: 32px; text-align: center;  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pinch — GEO Visibility Snapshot</title>
+  <style>
+    body { font: 15px/1.5 -apple-system, system-ui, sans-serif; margin: 2rem;
+           color: #1a1a1a; max-width: 1000px; }
+    h1 { margin-bottom: .25rem; }
+    .sub { color: #666; margin-top: 0; }
+    table { border-collapse: collapse; margin: 1rem 0 2rem; }
+    th, td { padding: .5rem .75rem; text-align: center; border: 1px solid #eee; }
+    th { background: #fafafa; }
+    .heat { color: #fff; font-weight: 600; }
+    h2 { margin-top: 2rem; }
+    .board { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+    .city-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem;
+                 min-width: 240px; }
+    .city-card h3 { margin: 0 0 .5rem; }
+    .bar { background: #f0f0f0; border-radius: 4px; height: 18px;
+           position: relative; margin: 3px 0; }
+    .bar > span { position: absolute; left: 6px; font-size: 12px;
+                  line-height: 18px; }
+    .bar > i { display: block; height: 100%; border-radius: 4px;
+               background: #c4410c; opacity: .25; }
+    .pinch > i { opacity: 1; }
+  </style>
 </head>
 <body>
-<header>
-<h1>GEO Tracker</h1>
-<div>
-    <a href="measurement.html">How this is measured</a>
-</div>
-</header>
-<main>
-    <section class="headline" id="headline">
-        <div class="label">Firecrawl GEO Score</div>
-        <div class="score">
-            <span id="firecrawl-score">-</span>
-            <span class="scale">/ 100</span>
-        </div>
-        <div class="meta" id="headline-meta">Loading...</div>
-        <div class="compare" id="headline-compare"></div>
-    </section>
+  <h1>Pinch — GEO Visibility Snapshot</h1>
+  <p class="sub" id="subtitle"></p>
 
-    <div class="panel">
-        <h2>Competitive ranking</h2>
-        <canvas id="rankingChart"></canvas>
-    </div>
+  <h2>Presence Rate — how often an AI names Pinch</h2>
+  <p class="sub">% of answers naming Pinch, by city and engine. Higher = more
+     visible. Citation rate (bookpinch.com cited as a source) shown in
+     parentheses.</p>
+  <div id="heatmap"></div>
 
-    <div class="panel">
-        <h2>Performance by segment</h2>
-        <canvas id="segmentChart"></canvas>
-    </div>
-</main>
+  <h2>Who the AI recommends instead (emergent competitors)</h2>
+  <p class="sub">Every provider the engines named, by city. Pinch highlighted.</p>
+  <div class="board" id="leaderboard"></div>
 
-<div class="footer" id="footer">Loading...</div>
-
-<script src="dashboard.js"></script>
+  <script src="dashboard.js"></script>
 </body>
 </html>
