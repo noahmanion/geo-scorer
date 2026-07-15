@@ -193,19 +193,26 @@ def _perplexity(prompt: str, max_tokens: int = 400) -> Response:
             usage.get("prompt_tokens", 0),
             usage.get("completion_tokens", 0),
         ),
-        citations=[c for c in citations if c],
+        citations=list(dict.fromkeys(c for c in citations if c)),
         raw=data,
     )
 def generate(model: ModelName, prompt: str, max_tokens: int = 2000) -> Response:
     if model == "claude":
-        return _claude(prompt, max_tokens)
+        response = _claude(prompt, max_tokens)
     elif model == "gpt":
-        return _gpt(prompt, max_tokens)
+        response = _gpt(prompt, max_tokens)
     elif model == "gemini":
-        return _gemini_call(prompt, max_tokens)
+        response = _gemini_call(prompt, max_tokens)
     elif model == "perplexity":
-        return _perplexity(prompt, max_tokens)
+        response = _perplexity(prompt, max_tokens)
     else:
         raise ValueError(f"Unknown model: {model}")
+
+    if not response.text.strip():
+        raise RuntimeError(
+            f"{model}: grounded response returned empty text "
+            "(likely max_tokens exhausted by web search)"
+        )
+    return response
 
 ALL_MODELS: list[ModelName] = ["claude", "gpt", "gemini", "perplexity"]
