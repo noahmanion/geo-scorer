@@ -3,6 +3,7 @@ unified interface for Anthropic, OpenAI, Google & Perplexity
 """
 from __future__ import annotations
 import os
+import re
 from dataclasses import dataclass
 from typing import Literal
 
@@ -17,6 +18,14 @@ import httpx
 load_dotenv()
 
 ModelName = Literal["claude", "gpt", "gemini", "perplexity"]
+
+_DOMAIN_RE = re.compile(r"^(?:[a-z0-9-]+\.)+[a-z]{2,}$", re.IGNORECASE)
+
+
+def _looks_like_domain(s: str) -> bool:
+    """True if `s` is a bare hostname like 'bookpinch.com' (no scheme/space)."""
+    s = (s or "").strip()
+    return bool(s) and " " not in s and bool(_DOMAIN_RE.match(s))
 
 
 @dataclass
@@ -132,14 +141,25 @@ def _gemini_call(prompt: str, max_tokens: int = 400) -> Response:
         ),
     )
     text = resp.text or ""
+    # Gemini's grounding `web.uri` is an opaque vertexaisearch redirect that
+    # never reveals the source domain, so brand/domain matching against it
+    # always fails. But `web.title` IS the publisher domain (e.g.
+    # "bookpinch.com"), so prefer it — emit it as a real URL so downstream
+    # host-matching works with no extra network calls. Fall back to the
+    # redirect uri only when the title isn't a domain.
     citations = []
     for cand in (resp.candidates or []):
         meta = getattr(cand, "grounding_metadata", None)
         for chunk in (getattr(meta, "grounding_chunks", None) or []):
             web = getattr(chunk, "web", None)
-            url = getattr(web, "uri", None)
-            if url:
-                citations.append(url)
+            if web is None:
+                continue
+            title = (getattr(web, "title", None) or "").strip()
+            uri = getattr(web, "uri", None)
+            if _looks_like_domain(title):
+                citations.append(f"https://{title}")
+            elif uri:
+                citations.append(uri)
 
     ## Gemini reports tokens via usage_metadata.
     usage = resp.usage_metadata

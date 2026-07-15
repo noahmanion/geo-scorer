@@ -31,12 +31,13 @@ API-grounded answers approximate, but do not perfectly equal, what a person
 sees in the consumer ChatGPT / Perplexity / Gemini apps. Standard, defensible
 way to measure GEO at scale — but an approximation.
 
-- Citation rate is a diagnostic, not the headline. Gemini's grounding returns
-  opaque `vertexaisearch.cloud.google.com` redirect URLs rather than publisher
-  domains, so bookpinch.com is never matched as a Gemini citation — Gemini's
-  citation rate reads near-zero regardless of actual sourcing. Presence Rate
-  (the headline) is unaffected because it is read from the answer text, not
-  citations.
+- Citation rate is a diagnostic, not the headline. Gemini's grounding exposes
+  each source as an opaque `vertexaisearch.cloud.google.com` redirect URL, but
+  its `web.title` field carries the real publisher domain — so we capture the
+  domain from the title (e.g. `bookpinch.com`) instead of the redirect. For
+  Gemini we therefore record source *domains*, not full URLs; other engines
+  record full URLs. Presence Rate (the headline) is read from the answer text,
+  not citations, so it is unaffected either way.
 
 ## Reproducing
 
