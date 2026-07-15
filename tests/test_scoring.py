@@ -89,3 +89,28 @@ def test_competitor_leaderboard_canonicalizes_pinch_spellings(tmp_path):
     pinch_rows = [p for p in board if p["name"] == "Pinch"]
     assert len(pinch_rows) == 1
     assert pinch_rows[0]["mentions"] == 2
+
+
+def test_presence_by_engine_aggregates_across_cities(tmp_path):
+    db = tmp_path / "t.sqlite"; _seed(db)
+    rows = score.presence_by_engine(db_path=db)
+    ppl = next(r for r in rows if r["model"] == "perplexity")
+    assert ppl["n"] == 2
+    assert ppl["presence_rate"] == 0.5
+
+
+def test_response_details_shape_and_canonicalization(tmp_path):
+    db = tmp_path / "t.sqlite"; _seed(db)
+    details = score.response_details(db_path=db)
+    assert len(details) == 2
+    d = details[0]
+    # every drill-down field is present
+    for key in ("city", "model", "query_id", "segment", "query", "answer",
+                "pinch_present", "pinch_position", "pinch_cited",
+                "providers", "evidence_quote", "citations"):
+        assert key in d
+    assert isinstance(d["pinch_present"], bool)
+    # providers are canonicalized (Pinch stays "Pinch", list of names)
+    present = next(x for x in details if x["pinch_present"])
+    assert "Pinch" in present["providers"]
+    assert "Glow MedSpa" in present["providers"]
