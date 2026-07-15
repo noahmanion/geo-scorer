@@ -1,1363 +1,893 @@
 {
-  "generated_at": "2026-05-06T00:01:15.499075+00:00",
-  "headline": [
+  "generated_at": "2026-07-15T17:50:31.073493+00:00",
+  "brand": "Pinch",
+  "presence": [
     {
-      "competitor": "Firecrawl",
-      "geo_score": 3.638351730726098,
-      "n_obs": 302,
-      "n_cells": 20
+      "city": "Chicago",
+      "model": "perplexity",
+      "n": 7,
+      "presence_rate": 0.5714,
+      "citation_rate": 0.5714
     },
     {
-      "competitor": "Bright Data",
-      "geo_score": 3.024332731286374,
-      "n_obs": 302,
-      "n_cells": 20
+      "city": "Denver",
+      "model": "perplexity",
+      "n": 7,
+      "presence_rate": 0.2857,
+      "citation_rate": 0.2857
     },
     {
-      "competitor": "Apify",
-      "geo_score": 2.690828551293668,
-      "n_obs": 301,
-      "n_cells": 20
+      "city": "Phoenix",
+      "model": "perplexity",
+      "n": 7,
+      "presence_rate": 0.1429,
+      "citation_rate": 0.1429
     },
     {
-      "competitor": "ScrapingBee",
-      "geo_score": 2.509343434343434,
-      "n_obs": 300,
-      "n_cells": 20
+      "city": "Seattle",
+      "model": "perplexity",
+      "n": 7,
+      "presence_rate": 0.4286,
+      "citation_rate": 0.4286
     },
     {
-      "competitor": "Browserbase",
-      "geo_score": 0.8698278465720326,
-      "n_obs": 301,
-      "n_cells": 20
-    },
-    {
-      "competitor": "Zyte",
-      "geo_score": 0.7553105808919763,
-      "n_obs": 301,
-      "n_cells": 20
+      "city": "Washington",
+      "model": "perplexity",
+      "n": 7,
+      "presence_rate": 0.1429,
+      "citation_rate": 0.1429
     }
   ],
-  "cells": [
-    {
-      "model": "claude",
-      "segment": "adversarial",
-      "competitor": "Apify",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "adversarial",
-      "competitor": "Bright Data",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "adversarial",
-      "competitor": "Browserbase",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "adversarial",
-      "competitor": "Firecrawl",
-      "n_obs": 7,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "adversarial",
-      "competitor": "ScrapingBee",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "adversarial",
-      "competitor": "Zyte",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "agent_building",
-      "competitor": "Apify",
-      "n_obs": 24,
-      "mentioned_rate": 0.208,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 6.0,
-      "stddev_strength": 0.212
-    },
-    {
-      "model": "claude",
-      "segment": "agent_building",
-      "competitor": "Bright Data",
-      "n_obs": 24,
-      "mentioned_rate": 0.417,
-      "avg_strength": 1.5,
-      "avg_context": 2.0,
-      "geo_score": 5.63,
-      "stddev_strength": 0.368
-    },
-    {
-      "model": "claude",
-      "segment": "agent_building",
-      "competitor": "Browserbase",
-      "n_obs": 24,
-      "mentioned_rate": 0.333,
-      "avg_strength": 2.0,
-      "avg_context": 2.12,
-      "geo_score": 6.8,
-      "stddev_strength": 0.156
-    },
-    {
-      "model": "claude",
-      "segment": "agent_building",
-      "competitor": "Firecrawl",
-      "n_obs": 24,
-      "mentioned_rate": 0.708,
-      "avg_strength": 2.76,
-      "avg_context": 2.76,
-      "geo_score": 9.61,
-      "stddev_strength": 0.156
-    },
-    {
-      "model": "claude",
-      "segment": "agent_building",
-      "competitor": "ScrapingBee",
-      "n_obs": 24,
-      "mentioned_rate": 0.583,
-      "avg_strength": 1.36,
-      "avg_context": 2.0,
-      "geo_score": 5.83,
-      "stddev_strength": 0.156
-    },
-    {
-      "model": "claude",
-      "segment": "agent_building",
-      "competitor": "Zyte",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "comparison_shopping",
-      "competitor": "Apify",
-      "n_obs": 6,
-      "mentioned_rate": 0.833,
-      "avg_strength": 2.4,
-      "avg_context": 2.0,
-      "geo_score": 8.71,
-      "stddev_strength": 0.707
-    },
-    {
-      "model": "claude",
-      "segment": "comparison_shopping",
-      "competitor": "Bright Data",
-      "n_obs": 6,
-      "mentioned_rate": 0.5,
-      "avg_strength": 2.33,
-      "avg_context": 2.33,
-      "geo_score": 8.08,
-      "stddev_strength": 0.236
-    },
-    {
-      "model": "claude",
-      "segment": "comparison_shopping",
-      "competitor": "Browserbase",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "comparison_shopping",
-      "competitor": "Firecrawl",
-      "n_obs": 6,
-      "mentioned_rate": 0.5,
-      "avg_strength": 3.0,
-      "avg_context": 3.0,
-      "geo_score": 10.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "comparison_shopping",
-      "competitor": "ScrapingBee",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "comparison_shopping",
-      "competitor": "Zyte",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "rag_ingest",
-      "competitor": "Apify",
-      "n_obs": 15,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "rag_ingest",
-      "competitor": "Bright Data",
-      "n_obs": 15,
-      "mentioned_rate": 0.067,
-      "avg_strength": 1.0,
-      "avg_context": 2.0,
-      "geo_score": 4.17,
-      "stddev_strength": 0.094
-    },
-    {
-      "model": "claude",
-      "segment": "rag_ingest",
-      "competitor": "Browserbase",
-      "n_obs": 15,
-      "mentioned_rate": 0.067,
-      "avg_strength": 1.0,
-      "avg_context": 2.0,
-      "geo_score": 3.94,
-      "stddev_strength": 0.094
-    },
-    {
-      "model": "claude",
-      "segment": "rag_ingest",
-      "competitor": "Firecrawl",
-      "n_obs": 15,
-      "mentioned_rate": 0.8,
-      "avg_strength": 2.58,
-      "avg_context": 2.58,
-      "geo_score": 9.41,
-      "stddev_strength": 0.094
-    },
-    {
-      "model": "claude",
-      "segment": "rag_ingest",
-      "competitor": "ScrapingBee",
-      "n_obs": 15,
-      "mentioned_rate": 0.067,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 6.36,
-      "stddev_strength": 0.189
-    },
-    {
-      "model": "claude",
-      "segment": "rag_ingest",
-      "competitor": "Zyte",
-      "n_obs": 16,
-      "mentioned_rate": 0.062,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 5.67,
-      "stddev_strength": 0.189
-    },
-    {
-      "model": "claude",
-      "segment": "research_monitoring",
-      "competitor": "Apify",
-      "n_obs": 24,
-      "mentioned_rate": 0.208,
-      "avg_strength": 2.4,
-      "avg_context": 2.2,
-      "geo_score": 6.75,
-      "stddev_strength": 0.204
-    },
-    {
-      "model": "claude",
-      "segment": "research_monitoring",
-      "competitor": "Bright Data",
-      "n_obs": 24,
-      "mentioned_rate": 0.25,
-      "avg_strength": 2.0,
-      "avg_context": 2.17,
-      "geo_score": 6.4,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "research_monitoring",
-      "competitor": "Browserbase",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "claude",
-      "segment": "research_monitoring",
-      "competitor": "Firecrawl",
-      "n_obs": 24,
-      "mentioned_rate": 0.042,
-      "avg_strength": 3.0,
-      "avg_context": 3.0,
-      "geo_score": 8.96,
-      "stddev_strength": 0.177
-    },
-    {
-      "model": "claude",
-      "segment": "research_monitoring",
-      "competitor": "ScrapingBee",
-      "n_obs": 24,
-      "mentioned_rate": 0.125,
-      "avg_strength": 2.0,
-      "avg_context": 2.67,
-      "geo_score": 6.19,
-      "stddev_strength": 0.204
-    },
-    {
-      "model": "claude",
-      "segment": "research_monitoring",
-      "competitor": "Zyte",
-      "n_obs": 24,
-      "mentioned_rate": 0.083,
-      "avg_strength": 1.5,
-      "avg_context": 2.0,
-      "geo_score": 4.85,
-      "stddev_strength": 0.177
-    },
-    {
-      "model": "gemini",
-      "segment": "adversarial",
-      "competitor": "Apify",
-      "n_obs": 4,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "adversarial",
-      "competitor": "Bright Data",
-      "n_obs": 4,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "adversarial",
-      "competitor": "Browserbase",
-      "n_obs": 4,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "adversarial",
-      "competitor": "Firecrawl",
-      "n_obs": 4,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "adversarial",
-      "competitor": "ScrapingBee",
-      "n_obs": 4,
-      "mentioned_rate": 0.25,
-      "avg_strength": 2.0,
-      "avg_context": 1.0,
-      "geo_score": 5.64,
-      "stddev_strength": 0.943
-    },
-    {
-      "model": "gemini",
-      "segment": "adversarial",
-      "competitor": "Zyte",
-      "n_obs": 4,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "agent_building",
-      "competitor": "Apify",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "agent_building",
-      "competitor": "Bright Data",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "agent_building",
-      "competitor": "Browserbase",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "agent_building",
-      "competitor": "Firecrawl",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "agent_building",
-      "competitor": "ScrapingBee",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "agent_building",
-      "competitor": "Zyte",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "comparison_shopping",
-      "competitor": "Apify",
-      "n_obs": 2,
-      "mentioned_rate": 1.0,
-      "avg_strength": 1.0,
-      "avg_context": 2.0,
-      "geo_score": 6.74,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "comparison_shopping",
-      "competitor": "Bright Data",
-      "n_obs": 2,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "comparison_shopping",
-      "competitor": "Browserbase",
-      "n_obs": 2,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "comparison_shopping",
-      "competitor": "Firecrawl",
-      "n_obs": 2,
-      "mentioned_rate": 1.0,
-      "avg_strength": 2.5,
-      "avg_context": 2.0,
-      "geo_score": 9.24,
-      "stddev_strength": 0.5
-    },
-    {
-      "model": "gemini",
-      "segment": "comparison_shopping",
-      "competitor": "ScrapingBee",
-      "n_obs": 1,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "comparison_shopping",
-      "competitor": "Zyte",
-      "n_obs": 1,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "rag_ingest",
-      "competitor": "Apify",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "rag_ingest",
-      "competitor": "Bright Data",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "rag_ingest",
-      "competitor": "Browserbase",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "rag_ingest",
-      "competitor": "Firecrawl",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "rag_ingest",
-      "competitor": "ScrapingBee",
-      "n_obs": 24,
-      "mentioned_rate": 0.083,
-      "avg_strength": 2.5,
-      "avg_context": 2.0,
-      "geo_score": 7.16,
-      "stddev_strength": 0.156
-    },
-    {
-      "model": "gemini",
-      "segment": "rag_ingest",
-      "competitor": "Zyte",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "research_monitoring",
-      "competitor": "Apify",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "research_monitoring",
-      "competitor": "Bright Data",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "research_monitoring",
-      "competitor": "Browserbase",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "research_monitoring",
-      "competitor": "Firecrawl",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "research_monitoring",
-      "competitor": "ScrapingBee",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gemini",
-      "segment": "research_monitoring",
-      "competitor": "Zyte",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "adversarial",
-      "competitor": "Apify",
-      "n_obs": 5,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "adversarial",
-      "competitor": "Bright Data",
-      "n_obs": 5,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "adversarial",
-      "competitor": "Browserbase",
-      "n_obs": 5,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "adversarial",
-      "competitor": "Firecrawl",
-      "n_obs": 5,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "adversarial",
-      "competitor": "ScrapingBee",
-      "n_obs": 5,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "adversarial",
-      "competitor": "Zyte",
-      "n_obs": 5,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "agent_building",
-      "competitor": "Apify",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "agent_building",
-      "competitor": "Bright Data",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "agent_building",
-      "competitor": "Browserbase",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "agent_building",
-      "competitor": "Firecrawl",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "agent_building",
-      "competitor": "ScrapingBee",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "agent_building",
-      "competitor": "Zyte",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "comparison_shopping",
-      "competitor": "Apify",
-      "n_obs": 3,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "comparison_shopping",
-      "competitor": "Bright Data",
-      "n_obs": 3,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "comparison_shopping",
-      "competitor": "Browserbase",
-      "n_obs": 3,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "comparison_shopping",
-      "competitor": "Firecrawl",
-      "n_obs": 3,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "comparison_shopping",
-      "competitor": "ScrapingBee",
-      "n_obs": 3,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "comparison_shopping",
-      "competitor": "Zyte",
-      "n_obs": 3,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "rag_ingest",
-      "competitor": "Apify",
-      "n_obs": 12,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "rag_ingest",
-      "competitor": "Bright Data",
-      "n_obs": 12,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "rag_ingest",
-      "competitor": "Browserbase",
-      "n_obs": 12,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "rag_ingest",
-      "competitor": "Firecrawl",
-      "n_obs": 12,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "rag_ingest",
-      "competitor": "ScrapingBee",
-      "n_obs": 12,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "rag_ingest",
-      "competitor": "Zyte",
-      "n_obs": 12,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "research_monitoring",
-      "competitor": "Apify",
-      "n_obs": 23,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "research_monitoring",
-      "competitor": "Bright Data",
-      "n_obs": 23,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "research_monitoring",
-      "competitor": "Browserbase",
-      "n_obs": 23,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "research_monitoring",
-      "competitor": "Firecrawl",
-      "n_obs": 23,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "research_monitoring",
-      "competitor": "ScrapingBee",
-      "n_obs": 23,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "gpt",
-      "segment": "research_monitoring",
-      "competitor": "Zyte",
-      "n_obs": 23,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "adversarial",
-      "competitor": "Apify",
-      "n_obs": 6,
-      "mentioned_rate": 0.167,
-      "avg_strength": 3.0,
-      "avg_context": 3.0,
-      "geo_score": 9.24,
-      "stddev_strength": 0.707
-    },
-    {
-      "model": "perplexity",
-      "segment": "adversarial",
-      "competitor": "Bright Data",
-      "n_obs": 7,
-      "mentioned_rate": 0.286,
-      "avg_strength": 1.5,
-      "avg_context": 2.5,
-      "geo_score": 6.22,
-      "stddev_strength": 0.471
-    },
-    {
-      "model": "perplexity",
-      "segment": "adversarial",
-      "competitor": "Browserbase",
-      "n_obs": 6,
-      "mentioned_rate": 0.167,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 6.59,
-      "stddev_strength": 0.471
-    },
-    {
-      "model": "perplexity",
-      "segment": "adversarial",
-      "competitor": "Firecrawl",
-      "n_obs": 6,
-      "mentioned_rate": 0.333,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 6.4,
-      "stddev_strength": 0.471
-    },
-    {
-      "model": "perplexity",
-      "segment": "adversarial",
-      "competitor": "ScrapingBee",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "adversarial",
-      "competitor": "Zyte",
-      "n_obs": 6,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "agent_building",
-      "competitor": "Apify",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "agent_building",
-      "competitor": "Bright Data",
-      "n_obs": 24,
-      "mentioned_rate": 0.042,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 5.85,
-      "stddev_strength": 0.118
-    },
-    {
-      "model": "perplexity",
-      "segment": "agent_building",
-      "competitor": "Browserbase",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "agent_building",
-      "competitor": "Firecrawl",
-      "n_obs": 24,
-      "mentioned_rate": 0.542,
-      "avg_strength": 2.15,
-      "avg_context": 2.69,
-      "geo_score": 8.2,
-      "stddev_strength": 0.059
-    },
-    {
-      "model": "perplexity",
-      "segment": "agent_building",
-      "competitor": "ScrapingBee",
-      "n_obs": 24,
-      "mentioned_rate": 0.167,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 6.42,
-      "stddev_strength": 0.118
-    },
-    {
-      "model": "perplexity",
-      "segment": "agent_building",
-      "competitor": "Zyte",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "comparison_shopping",
-      "competitor": "Apify",
-      "n_obs": 3,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "comparison_shopping",
-      "competitor": "Bright Data",
-      "n_obs": 3,
-      "mentioned_rate": 0.667,
-      "avg_strength": 2.0,
-      "avg_context": 2.5,
-      "geo_score": 8.07,
-      "stddev_strength": 1.247
-    },
-    {
-      "model": "perplexity",
-      "segment": "comparison_shopping",
-      "competitor": "Browserbase",
-      "n_obs": 3,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "comparison_shopping",
-      "competitor": "Firecrawl",
-      "n_obs": 3,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "comparison_shopping",
-      "competitor": "ScrapingBee",
-      "n_obs": 3,
-      "mentioned_rate": 0.333,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 6.74,
-      "stddev_strength": 0.943
-    },
-    {
-      "model": "perplexity",
-      "segment": "comparison_shopping",
-      "competitor": "Zyte",
-      "n_obs": 3,
-      "mentioned_rate": 0.333,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 6.74,
-      "stddev_strength": 0.943
-    },
-    {
-      "model": "perplexity",
-      "segment": "rag_ingest",
-      "competitor": "Apify",
-      "n_obs": 24,
-      "mentioned_rate": 0.25,
-      "avg_strength": 2.5,
-      "avg_context": 2.5,
-      "geo_score": 7.88,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "rag_ingest",
-      "competitor": "Bright Data",
-      "n_obs": 24,
-      "mentioned_rate": 0.042,
-      "avg_strength": 2.0,
-      "avg_context": 2.0,
-      "geo_score": 6.08,
-      "stddev_strength": 0.118
-    },
-    {
-      "model": "perplexity",
-      "segment": "rag_ingest",
-      "competitor": "Browserbase",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "rag_ingest",
-      "competitor": "Firecrawl",
-      "n_obs": 24,
-      "mentioned_rate": 0.542,
-      "avg_strength": 2.23,
-      "avg_context": 2.54,
-      "geo_score": 8.26,
-      "stddev_strength": 0.118
-    },
-    {
-      "model": "perplexity",
-      "segment": "rag_ingest",
-      "competitor": "ScrapingBee",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "rag_ingest",
-      "competitor": "Zyte",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "research_monitoring",
-      "competitor": "Apify",
-      "n_obs": 24,
-      "mentioned_rate": 0.417,
-      "avg_strength": 2.3,
-      "avg_context": 2.5,
-      "geo_score": 8.07,
-      "stddev_strength": 0.118
-    },
-    {
-      "model": "perplexity",
-      "segment": "research_monitoring",
-      "competitor": "Bright Data",
-      "n_obs": 24,
-      "mentioned_rate": 0.125,
-      "avg_strength": 2.0,
-      "avg_context": 2.33,
-      "geo_score": 6.65,
-      "stddev_strength": 0.102
-    },
-    {
-      "model": "perplexity",
-      "segment": "research_monitoring",
-      "competitor": "Browserbase",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "research_monitoring",
-      "competitor": "Firecrawl",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "research_monitoring",
-      "competitor": "ScrapingBee",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    },
-    {
-      "model": "perplexity",
-      "segment": "research_monitoring",
-      "competitor": "Zyte",
-      "n_obs": 24,
-      "mentioned_rate": 0.0,
-      "avg_strength": 0.0,
-      "avg_context": 0.0,
-      "geo_score": 0.0,
-      "stddev_strength": 0.0
-    }
-  ]
+  "leaderboard": {
+    "Chicago": [
+      {
+        "name": "Pinch Med Spa",
+        "mentions": 4,
+        "share_of_voice": 0.1111
+      },
+      {
+        "name": "Better Med Spa",
+        "mentions": 2,
+        "share_of_voice": 0.0556
+      },
+      {
+        "name": "Chicago Aesthetics",
+        "mentions": 2,
+        "share_of_voice": 0.0556
+      },
+      {
+        "name": "LaserAway Chicago \u2013 River North / Lincoln Park",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Elysium SurgiSpa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Chapter Aesthetic Studio",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Elite Chicago Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Skin Bar & Studio",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "SpaDerma",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Beauty Bus \u2013 Lipodoc / Chicago Aesthetics Institute",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Innovative MedSpa \u2013 Mobile MedSpa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "BeautyFix",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Better You Spas",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Lace Curtain Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Harmony Mobile Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "mobile medical Botox providers",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "licensed mobile aesthetic provider",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Pinch",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "LaserAway West Loop",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "YA Skin Studio",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Kaminska Dermatology",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Fulcrum Aesthetics & Surgery",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Aesthetics By Alyssa LLC",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Skinovatio Medical Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Express Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Beauty With Bubbly",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Images Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Natural Beauty Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "The Geldner Center",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Beverly Botox Nurse",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      },
+      {
+        "name": "Pinch Concierge Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0278
+      }
+    ],
+    "Phoenix": [
+      {
+        "name": "Skin Clique",
+        "mentions": 2,
+        "share_of_voice": 0.0541
+      },
+      {
+        "name": "Desert Mobile Medical",
+        "mentions": 2,
+        "share_of_voice": 0.0541
+      },
+      {
+        "name": "Arizona Mobile Injector",
+        "mentions": 2,
+        "share_of_voice": 0.0541
+      },
+      {
+        "name": "LaserAway Phoenix - Arcadia",
+        "mentions": 2,
+        "share_of_voice": 0.0541
+      },
+      {
+        "name": "Phoenix Skin Medical Surgical Group",
+        "mentions": 2,
+        "share_of_voice": 0.0541
+      },
+      {
+        "name": "Liquid Mobile IV",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "JadeGrace Aesthetics",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Scottsdale Mobile Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "ZaSpa",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "AZ IV Medics",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Manna Mobile Medical",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Mobile IV Drip",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Liquid Mobile IV \u2013 Mobile Botox & Injectables",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Beso Wellness & Beauty",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Phoenix Surgical Dermatology Group",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Arcadia Wellness Center",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "A to Z Dermatology",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "MD Skin Lounge",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Beso Wellness and Beauty",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Arizona Facial Plastics",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Focal Point Salon & Spa",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Bellagio Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Butterfly Method Skincare",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Arrowhead Medical & Wellness Center",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Zensken",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Matisse Medspa/Regency Specialties",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Paradise Medspa & Wellness",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Rise Aesthetics",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Esthetic Finesse",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Royal Aesthetics & Injectables",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Injections by Megan",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      },
+      {
+        "name": "Pinch",
+        "mentions": 1,
+        "share_of_voice": 0.027
+      }
+    ],
+    "Denver": [
+      {
+        "name": "Boujee Nurse",
+        "mentions": 3,
+        "share_of_voice": 0.06
+      },
+      {
+        "name": "Cherry Medical Aesthetics",
+        "mentions": 2,
+        "share_of_voice": 0.04
+      },
+      {
+        "name": "The Luxe Room",
+        "mentions": 2,
+        "share_of_voice": 0.04
+      },
+      {
+        "name": "Rejuvenate MedSpa / SkinLab Denver",
+        "mentions": 2,
+        "share_of_voice": 0.04
+      },
+      {
+        "name": "Vive Med Spa",
+        "mentions": 2,
+        "share_of_voice": 0.04
+      },
+      {
+        "name": "Alpenglow Aesthetics & Rejuvenation",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Pinch",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Happy Clinic Denver",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "SkinSpirit Denver (Greenwood Village)",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "VITAHL",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Cheeky Denver",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Original Glam",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Simply Injectables",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Colorado Facial Plastic Surgery",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Look Lab Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "LaserAway Denver",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "HydraMed Mobile IV Therapy",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Luxe Mobile IV",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Ahhh Mobile Spa",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Rejuvenate Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Novuskin Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "OVME",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Alpenglow Aesthetics & Rejuvenation \u2013 Mobile Botox Denver",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Beautiful Skin Denver",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Core Dermatology",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "LaserAway Denver \u2013 Berkeley",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Colorado Skin & Vein",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Hollywood Body & Face",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "The Center for Cosmetic Surgery (Denver/Golden)",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Weber Facial Plastic Surgery / Dr. Weber",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Eden Health Club",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "AAFE Medspa Denver",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Skin Care Doctor",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Teighler",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "ReDerm MD",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Denver Laser Solutions",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "LaserAway Denver (Cherry Creek)",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Always Beautiful Medspa",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Root Med Aesthetics",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "POSHPOD",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Elite Medical & Aesthetics",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Avante Cosmetic / Nurse Joann",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Rejuvenate Medspa",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      },
+      {
+        "name": "Pinch (bookpinch.com / Pinch Med Spa)",
+        "mentions": 1,
+        "share_of_voice": 0.02
+      }
+    ],
+    "Seattle": [
+      {
+        "name": "Skin Clique",
+        "mentions": 2,
+        "share_of_voice": 0.087
+      },
+      {
+        "name": "Timeless Treatment Medspa",
+        "mentions": 2,
+        "share_of_voice": 0.087
+      },
+      {
+        "name": "Forever Young Aesthetics",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Pinch Med Spa (Seattle Mobile Med Spa)",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Aesthete Mobile Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Touch of Beauty MediSpa \u2013 Mobile Aesthetic Services",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Spark Mobile Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "In-home Botox",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Advanced Dermatology and Laser Institute of Seattle",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "LaserAway Seattle",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Seattle Plastic Surgery",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "SkinSpirit",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Seattle Mobile IV Therapy",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Pinch Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Touch of Beauty MediSpa",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "SALT Hydration & Wellness",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "ClubInject",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "SkinSpirit Green Lake",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Egrari Plastic Surgery",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Gallery of Cosmetic Surgery",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      },
+      {
+        "name": "Pinch",
+        "mentions": 1,
+        "share_of_voice": 0.0435
+      }
+    ],
+    "Washington": [
+      {
+        "name": "Congressional Plastic Surgery",
+        "mentions": 2,
+        "share_of_voice": 0.0455
+      },
+      {
+        "name": "West End Plastic Surgery",
+        "mentions": 2,
+        "share_of_voice": 0.0455
+      },
+      {
+        "name": "Georgetown Allure Medical Spa",
+        "mentions": 2,
+        "share_of_voice": 0.0455
+      },
+      {
+        "name": "Peel Haus",
+        "mentions": 2,
+        "share_of_voice": 0.0455
+      },
+      {
+        "name": "Modwella",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "LaserAway",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Sherber + Rad",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "OVME",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "MI Skin",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "AnewSkin",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Cultura",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Georgetown Allure",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Potomac Plastic Surgery",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Cosmetic Skin Institute",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Celebrating You \u2013 Mobile Day Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "ECS Mobile Spa (Exclusive Concierge Mobile Spa)",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Baseline Medical \u2013 Mobile Medical Care",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Vitalify MedSpa (Dupont Circle)",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Secret MedSpa \u2013 Georgetown",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "The Skin Clique",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "RevDoc",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Capital Center for Surgery / MedSpa",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "LaserAway Washington DC \u2013 The Yards",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Georgetown Allure Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "WeDo Aesthetics",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Somenek + Pittman MD",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Duo Wellness Rejuvenation",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "MI Skin Dermatology Center",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "FoxHall Dermatology",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "MI Skin Dermatology & Laser Center (Dr. Melda Isaac)",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "LaserAway (The Yards & Cathedral Heights)",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Hela Medical Spa (Georgetown)",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Art of Lash",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "The District Injector Med Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Arta Medical Spa",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "ProMD Health",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Christina Nellis BSN, RN",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Erika Barry NP\u2011C",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Resculpt DC",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      },
+      {
+        "name": "Pinch",
+        "mentions": 1,
+        "share_of_voice": 0.0227
+      }
+    ]
+  }
 }
