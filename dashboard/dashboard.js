@@ -1,3 +1,9 @@
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
 function heatColor(rate) {
   // 0 -> light grey, 1 -> Pinch orange
   const r = Math.round(0xf0 + (0xc4 - 0xf0) * rate);
@@ -19,9 +25,9 @@ async function main() {
 
   // ---- Heatmap table ----
   let html = '<table><thead><tr><th>City \\ Engine</th>' +
-    models.map(m => `<th>${m}</th>`).join('') + '</tr></thead><tbody>';
+    models.map(m => `<th>${esc(m)}</th>`).join('') + '</tr></thead><tbody>';
   for (const city of cities) {
-    html += `<tr><th>${city}</th>`;
+    html += `<tr><th>${esc(city)}</th>`;
     for (const m of models) {
       const cell = lookup[`${city}|${m}`];
       if (!cell) { html += '<td>—</td>'; continue; }
@@ -42,12 +48,12 @@ async function main() {
     card.className = 'city-card';
     const top = data.leaderboard[city].slice(0, 8);
     const max = Math.max(...top.map(p => p.mentions), 1);
-    card.innerHTML = `<h3>${city}</h3>` + top.map(p => {
+    card.innerHTML = `<h3>${esc(city)}</h3>` + top.map(p => {
       const isPinch = /pinch/i.test(p.name);
       const w = (p.mentions / max * 100).toFixed(0);
       return `<div class="bar ${isPinch ? 'pinch' : ''}">
         <i style="width:${w}%"></i>
-        <span>${p.name} · ${p.mentions}</span></div>`;
+        <span>${esc(p.name)} · ${p.mentions}</span></div>`;
     }).join('');
     board.appendChild(card);
   }
