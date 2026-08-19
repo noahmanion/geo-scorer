@@ -1,6 +1,6 @@
-# Firecrawl GEO Rank Tracker
+# GEO Rank Tracker
 
-Measures how Firecrawl is recommended across major LLMs vs competitors.
+Measures how a product is recommended across major LLMs vs competitors. The example data is for Firecrawl.
 
 ## Methodology
 
